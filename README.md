@@ -385,8 +385,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 ## 👤 Author
 
-**RentalFlow Development Team**
-
+**SUNDARESN K**
 **If you want to start or run the application in loacl server**
 
 
