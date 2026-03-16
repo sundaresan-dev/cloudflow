@@ -54,7 +54,7 @@
                                 View
                             </button>
                             {% if ticket.status == 'open' %}
-                            <button class="btn btn-sm btn-outline-success" onclick="closeTicket({{ ticket.id }})">
+                            <button class="btn btn-sm btn-outline-success" onclick="closeTicket('{{ ticket.id }}')">
                                 Resolve
                             </button>
                             {% endif %}
@@ -86,7 +86,7 @@
                                 <div class="modal-footer border-top border-secondary">
                                     <button type="button" class="btn btn-outline-custom" data-bs-dismiss="modal">Close</button>
                                     {% if ticket.status == 'open' %}
-                                    <button type="button" class="btn btn-success" onclick="closeTicket({{ ticket.id }}, true)">Mark Resolved</button>
+                                    <button type="button" class="btn btn-success" onclick="closeTicket('{{ ticket.id }}', true)">Mark Resolved</button>
                                     {% endif %}
                                 </div>
                             </div>

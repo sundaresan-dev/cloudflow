@@ -170,7 +170,8 @@ def create_app():
         """Inject user info into templates"""
         return {
             'user_name': session.get('user_name'),
-            'user_email': session.get('user_email')
+            'user_email': session.get('user_email'),
+            'is_admin': session.get('is_admin', False)
         }
     
     return app
