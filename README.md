@@ -406,8 +406,7 @@ sudo python3 start.py
 For issues, questions, or suggestions:
 
 - Submit an issue on GitHub
-- Email: support@rentalflow.local
-- Check the [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+- Email: sundhar2005k@gmail.com
 
 ---
 
