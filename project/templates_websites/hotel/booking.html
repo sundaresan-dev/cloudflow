@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking - Hotel Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🏨 Luxury Hotels</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="#rooms">Rooms</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="booking-section">
+        <div class="container">
+            <h2>Book Your Room</h2>
+            
+            <div class="booking-form">
+                <form>
+                    <div class="form-group">
+                        <label for="checkin">Check-in Date:</label>
+                        <input type="date" id="checkin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Check-out Date:</label>
+                        <input type="date" id="checkout" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests:</label>
+                        <select id="guests" required>
+                            <option value="">Select</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search Rooms</button>
+                </form>
+            </div>
+
+            <h3 style="margin-top: 50px;">Available Rooms</h3>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image">🛏️</div>
+                    <h4>Single Room</h4>
+                    <p class="price">$80 per night</p>
+                    <p class="description">Cozy room for single occupancy</p>
+                    <ul class="amenities">
+                        <li>✓ Free WiFi</li>
+                        <li>✓ Air Conditioning</li>
+                        <li>✓ TV & Entertainment</li>
+                    </ul>
+                    <button class="btn btn-primary">Book</button>
+                </div>
+                <div class="room-card">
+                    <div class="room-image">🛏️</div>
+                    <h4>Double Room</h4>
+                    <p class="price">$120 per night</p>
+                    <p class="description">Spacious room for couples and friends</p>
+                    <ul class="amenities">
+                        <li>✓ Free WiFi</li>
+                        <li>✓ Air Conditioning</li>
+                        <li>✓ Mini Bar</li>
+                    </ul>
+                    <button class="btn btn-primary">Book</button>
+                </div>
+                <div class="room-card">
+                    <div class="room-image">🛏️</div>
+                    <h4>Family Suite</h4>
+                    <p class="price">$180 per night</p>
+                    <p class="description">Luxurious suite for families</p>
+                    <ul class="amenities">
+                        <li>✓ Free WiFi</li>
+                        <li>✓ Kitchen</li>
+                        <li>✓ Jacuzzi</li>
+                    </ul>
+                    <button class="btn btn-primary">Book</button>
+                </div>
+                <div class="room-card">
+                    <div class="room-image">👑</div>
+                    <h4>Presidential Suite</h4>
+                    <p class="price">$300 per night</p>
+                    <p class="description">Ultimate luxury and comfort</p>
+                    <ul class="amenities">
+                        <li>✓ Full Service</li>
+                        <li>✓ Concierge</li>
+                        <li>✓ Private Spa</li>
+                    </ul>
+                    <button class="btn btn-primary">Book</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luxury Hotels. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

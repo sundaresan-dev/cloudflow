@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}My Deployments - CloudFlow{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pb-5">
+    <div class="dashboard-header mb-5">
+        <h1><i class="bi bi-hdd-network me-2"></i> My Deployments</h1>
+        <p class="lead">Manage your active cloud platforms</p>
+    </div>
+
+    <div id="alertContainer"></div>
+
+    <!-- Deployments Table -->
+    <div class="table-responsive mt-2">
+        <table class="table-glass" id="deploymentsTable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Project</th>
+                    <th>Status</th>
+                    <th>Live URL</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="deploymentsBody">
+                <tr>
+                    <td colspan="5" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="noDeployments" class="alert alert-glass-info text-center py-4 mt-4" style="display: none;">
+        <i class="bi bi-inbox fs-1 mb-3 d-block"></i>
+        <h5>No active deployments</h5>
+        <p class="mb-3 text-muted-glass">You haven't launched any platforms yet.</p>
+        <a href="/dashboard" class="btn btn-primary-custom rounded-pill px-4">Create Deployment</a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/deployments.js') }}"></script>
+{% endblock %}

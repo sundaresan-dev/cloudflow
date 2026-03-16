@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Website Deployment System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 120px)">
+        <div class="col-md-5">
+            <div class="glass-panel p-5">
+                <h3 class="auth-title">🔐 Welcome Back</h3>
+                
+                <div id="alertContainer"></div>
+                
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control glass-input" id="email" name="email" required placeholder="name@example.com">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control glass-input" id="password" name="password" required placeholder="••••••••">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary-custom w-100 mb-4 py-2" style="font-size: 1.1rem;">Login</button>
+                </form>
+                
+                <p class="text-center text-muted-glass mb-0">
+                    Don't have an account? <a href="/register" class="text-decoration-none" style="color: #6366f1;">Start Free</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

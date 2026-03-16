@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - CloudFlow{% endblock %}
+
+{% block content %}
+<div class="container pb-5">
+    <div class="dashboard-header mb-5">
+        <h1 class="display-5 mt-4">Welcome back, {{ user_name }}!</h1>
+        <p class="lead">Here's an overview of your cloud infrastructure</p>
+    </div>
+    
+    <div id="alertContainer" class="mb-4"></div>
+    
+    <!-- Stats Row -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="glass-panel p-4 text-center h-100">
+                <div class="card-icon mb-3 bg-primary bg-opacity-10 text-primary border-primary">
+                    <i class="bi bi-hdd-network"></i>
+                </div>
+                <h2 class="display-6 fw-bold">{{ stats.total_deployments }}</h2>
+                <p class="text-muted-glass mb-0">Total Deployments</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-panel p-4 text-center h-100">
+                <div class="card-icon mb-3 bg-success bg-opacity-10 text-success border-success">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+                <h2 class="display-6 fw-bold">{{ stats.active_sites }}</h2>
+                <p class="text-muted-glass mb-0">Active Websites</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-panel p-4 text-center h-100">
+                <div class="card-icon mb-3 bg-info bg-opacity-10 text-info border-info">
+                    <i class="bi bi-layers"></i>
+                </div>
+                <h2 class="display-6 fw-bold">{{ stats.templates_available }}</h2>
+                <p class="text-muted-glass mb-0">Ready Templates</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <!-- Quick Actions -->
+        <div class="col-md-4">
+            <div class="glass-panel p-4 h-100">
+                <h4 class="mb-4"><i class="bi bi-lightning-charge me-2 text-warning"></i> Quick Actions</h4>
+                <div class="d-grid gap-3">
+                    <a href="/create-website" class="btn btn-primary-custom btn-lg py-3">
+                        <i class="bi bi-plus-circle me-2"></i> Create New Site
+                    </a>
+                    <a href="/deployments" class="btn btn-outline-custom btn-lg py-3">
+                        <i class="bi bi-list-ul me-2"></i> View All Sites
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Deployments -->
+        <div class="col-md-8">
+            <div class="glass-panel p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0"><i class="bi bi-clock-history me-2 text-info"></i> Recent Deployments</h4>
+                    <a href="/deployments" class="text-info text-decoration-none small">View all <i class="bi bi-arrow-right"></i></a>
+                </div>
+                
+                {% if recent_deployments %}
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Domain</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dep in recent_deployments %}
+                            <tr>
+                                <td>{{ dep.name }}</td>
+                                <td><a href="{{ dep.url }}" target="_blank" class="text-info text-decoration-none">{{ dep.url.replace('http://', '') }}</a></td>
+                                <td class="text-muted small">{{ dep.created_at.strftime('%Y-%m-%d') }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <p class="text-muted-glass">No deployments found. Start by creating your first website!</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
+{% endblock %}

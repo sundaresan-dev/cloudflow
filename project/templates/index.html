@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudFlow | Instant Website Hosting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Animated Gradient Background */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #4c1d95, #831843);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Glass Navbar */
+        .navbar-glass {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #fff !important;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand span {
+            color: #38bdf8;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge-pill {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeInUp 1s 0.2s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: #94a3b8;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.4s ease forwards;
+            max-width: 700px;
+            margin-inline: auto;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.6);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s 0.6s ease forwards;
+        }
+
+        @media (max-width: 576px) {
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Floating Background Elements */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+            animation: float 20s infinite;
+            opacity: 0.6;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #4338ca;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: #be185d;
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 25s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: #0ea5e9;
+            top: 40%;
+            left: 20%;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 10;
+            background-color: var(--dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: skewX(-20deg);
+            transition: 0.7s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card:hover::before {
+            left: 200%;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .icon-ecommerce {
+            color: #f472b6;
+            text-shadow: 0 0 15px rgba(244, 114, 182, 0.5);
+        }
+
+        .icon-school {
+            color: #38bdf8;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .icon-college {
+            color: #4ade80;
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+        }
+
+        .icon-hotel {
+            color: #fbbf24;
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+        }
+
+        .glass-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #f8fafc;
+        }
+
+        .glass-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 0;
+            font-weight: 300;
+        }
+
+        /* Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        /* Footer */
+        .footer-dark {
+            background-color: #020617;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-dark p {
+            color: #64748b;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Glass Navbar -->
+    <nav class="navbar-glass">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand text-decoration-none">
+                Cloud<span>Deploy</span>
+            </a>
+            <div class="nav-actions">
+                <a href="/login" class="btn btn-outline-custom rounded-pill px-4 py-2 me-2"
+                    style="font-size: 0.95rem;">Login</a>
+                <a href="/register" class="btn btn-primary-custom rounded-pill px-4 py-2"
+                    style="font-size: 0.95rem; padding: 10px 24px;">Start Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animated Hero Section -->
+    <header class="hero-section">
+        <!-- Background Orbs -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+
+        <div class="hero-content">
+            <div class="badge-pill">
+                <i class="bi bi-lightning-charge-fill me-1"></i> Instant Provisioning
+            </div>
+            <h1 class="hero-title">Deploy Premium Websites in Seconds</h1>
+            <p class="hero-subtitle">
+                The ultimate autonomous cloud platform. Choose from stunning pre-built templates, auto-configure your
+                custom domains, and go live instantly. Zero server configuration required.
+            </p>
+            <div class="hero-actions">
+                <a href="/register" class="btn-custom btn-primary-custom">
+                    Start Deploying Now <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="#templates" class="btn-custom btn-outline-custom">
+                    Explore Templates <i class="bi bi-grid"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Templates/Features Section -->
+    <section id="templates" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ready-To-Use Platforms</h2>
+                <p class="text-secondary"
+                    style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #94a3b8 !important;">
+                    Every deployment includes a fully separated MySQL database, automated Nginx routing, and custom
+                    domain mapping out of the box.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- E-Commerce -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card">
+                        <div class="card-icon icon-ecommerce">
+                            <i class="bi bi-cart3"></i>
+                        </div>
+                        <h3>E-Commerce</h3>
+                        <p>A full digital storefront with product catalog, cart mechanics, and seamless checkout design.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- School -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card">
+                        <div class="card-icon icon-school">
+                            <i class="bi bi-backpack"></i>
+                        </div>
+                        <h3>School Hub</h3>
+                        <p>Manage students, teachers, and curriculum with a dedicated portal for primary education
+                            institutes.</p>
+                    </div>
+                </div>
+
+                <!-- College -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card">
+                        <div class="card-icon icon-college">
+                            <i class="bi bi-mortarboard"></i>
+                        </div>
+                        <h3>University Pro</h3>
+                        <p>Advanced collegiate system handling departments, complex courses, and faculty operations.</p>
+                    </div>
+                </div>
+
+                <!-- Hotel -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card">
+                        <div class="card-icon icon-hotel">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h3>Hotel Booking</h3>
+                        <p>Turnkey hospitality suite with room showcases, availability checks, and integrated booking
+                            flows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-dark">
+        <div class="container">
+            <p>&copy; 2026 CloudFlow Website System. Crafted with precision.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
