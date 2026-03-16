@@ -59,7 +59,6 @@ def register():
             session['user_id'] = user_id
             session['user_name'] = name
             session['user_email'] = email
-            session['is_admin'] = False
             return jsonify({
                 'success': True,
                 'message': 'Registration successful',
@@ -84,7 +83,7 @@ def login():
     
     # Check user
     user = DatabaseConnection.execute_query(
-        "SELECT id, name, email, password, is_admin FROM users WHERE email = %s",
+        "SELECT id, name, email, password FROM users WHERE email = %s",
         (email,),
         fetch_one=True
     )
@@ -99,7 +98,6 @@ def login():
     session['user_id'] = user['id']
     session['user_name'] = user['name']
     session['user_email'] = user['email']
-    session['is_admin'] = user['is_admin']
     
     return jsonify({
         'success': True,

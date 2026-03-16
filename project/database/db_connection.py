@@ -50,25 +50,10 @@ class DatabaseConnection:
                 name VARCHAR(100) NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
-                is_admin BOOLEAN DEFAULT FALSE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
             """
             cursor.execute(create_users_table)
-            
-            # Create tickets table
-            create_tickets_table = """
-            CREATE TABLE IF NOT EXISTS tickets (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                user_id INT NOT NULL,
-                subject VARCHAR(255) NOT NULL,
-                message TEXT NOT NULL,
-                status VARCHAR(20) DEFAULT 'open',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-            )
-            """
-            cursor.execute(create_tickets_table)
             
             # Create deployments table
             create_deployments_table = """

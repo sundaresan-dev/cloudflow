@@ -3,8 +3,6 @@ from config import Config
 from database.db_connection import DatabaseConnection
 from routes.auth_routes import auth_bp
 from routes.deploy_routes import deploy_bp
-from routes.admin_routes import admin_bp
-from routes.support_routes import support_bp
 import os
 
 def create_app():
@@ -18,8 +16,6 @@ def create_app():
     # Register blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(deploy_bp)
-    app.register_blueprint(admin_bp)
-    app.register_blueprint(support_bp)
     
     # Create deployed_sites directory if it doesn't exist
     if not os.path.exists(app.config['DEPLOYED_SITES_PATH']):
@@ -170,8 +166,7 @@ def create_app():
         """Inject user info into templates"""
         return {
             'user_name': session.get('user_name'),
-            'user_email': session.get('user_email'),
-            'is_admin': session.get('is_admin', False)
+            'user_email': session.get('user_email')
         }
     
     return app
