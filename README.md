@@ -1,4 +1,4 @@
-# RentalFlow - Cloud-Based Website Deployment System
+# Cloudflow - Cloud-Based Website Deployment System
 
 A powerful, automated platform for deploying and managing multiple custom websites with personalized domains. Deploy fully-functional websites in minutes with real-time domain management and scheduled automation.
 
